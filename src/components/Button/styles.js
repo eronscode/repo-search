@@ -13,12 +13,12 @@ const StyledButton = styled.button`
   appearance: none;
   border: 3px solid ${color.blue};
   outline: 0;
-  text-transform: uppercase;
+  text-transform: capitalize;
   min-width: 100%;
   line-height: 25px;
   letter-spacing: 0.07em;
   ${mixins.clickable}
-  ${font.size(23)}
+  ${font.size(16)}
   ${(props) => buttonVariants[props.variant]}
   &:disabled {
     opacity: 0.6;
