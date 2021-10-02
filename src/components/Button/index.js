@@ -15,7 +15,7 @@ const defaultProps = {
 const propTypes = {
   className: PropTypes.string,
   children: PropTypes.any,
-  variant: PropTypes.string,
+  variant: PropTypes.oneOf(["primary", "secondary"]),
   disabled: PropTypes.bool,
   isLoading: PropTypes.bool,
   round: PropTypes.bool,

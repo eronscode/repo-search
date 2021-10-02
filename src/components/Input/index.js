@@ -1,9 +1,12 @@
 import { forwardRef } from "react";
 import PropTypes from "prop-types";
 
-import { StyledInput, InputElement, ErrorContainer, InputWrapper } from "./styles";
-import { ErrorIcon } from "utils/icons";
-import Tooltip from "components/Tooltip";
+import {
+  StyledInput,
+  InputElement,
+  ErrorContainer,
+  InputWrapper,
+} from "./styles";
 
 const propTypes = {
   className: PropTypes.string,
@@ -27,19 +30,22 @@ const defaultProps = {
 
 const Input = forwardRef(
   (
-    { className, label, name, isError, errorMsg, onChange, value, ...inputProps },
+    {
+      className,
+      label,
+      name,
+      isError,
+      errorMsg,
+      onChange,
+      value,
+      ...inputProps
+    },
     ref
   ) => {
     return (
       <InputWrapper>
         {label && <label htmlFor={name}>{label} </label>}
         <StyledInput className={className}>
-          {errorMsg && (
-            <ErrorContainer>
-              <Tooltip value={errorMsg} />
-              <ErrorIcon />
-            </ErrorContainer>
-          )}
           <InputElement
             value={value}
             invalid={isError}
@@ -49,6 +55,7 @@ const Input = forwardRef(
             {...inputProps}
           />
         </StyledInput>
+        {errorMsg && <ErrorContainer>{errorMsg}</ErrorContainer>}
       </InputWrapper>
     );
   }

@@ -1,6 +1,5 @@
 import styled, { css } from "styled-components";
-
-import { color, font, mixins } from "@styles/styleUtils";
+import { color, font, mixins } from "styles/styleUtils";
 
 const StyledButton = styled.button`
   display: inline-block;
@@ -12,7 +11,7 @@ const StyledButton = styled.button`
   white-space: nowrap;
   transition: all 0.1s;
   appearance: none;
-  border: 3px solid ${color.primary.default};
+  border: 3px solid ${color.blue};
   outline: 0;
   text-transform: uppercase;
   min-width: 100%;
@@ -29,12 +28,12 @@ const StyledButton = styled.button`
 
 const buttonVariants = {
   primary: css`
-    color: ${color.secondary.default};
-    background: ${(props) => color[props.variant].default};
+    color: ${color.white};
+    background: ${color.blue};
   `,
   secondary: css`
-    color: ${color.primary.default};
-    background: ${(props) => color[props.variant].default};
+    color: ${color.blue};
+    background: ${color.white};
   `,
 };
 
