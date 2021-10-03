@@ -22,13 +22,13 @@ const defaultProps = {
 };
 
 function Card({
-  avatar_url = "",
-  username = "",
-  full_name = "",
-  forks = "",
-  open_issues = "",
-  stars = "",
-  toggleContributors = () => null,
+  avatar_url,
+  username,
+  full_name,
+  forks,
+  open_issues,
+  stars,
+  toggleContributors,
 }) {
   return (
     <CardContainer>
