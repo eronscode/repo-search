@@ -6,12 +6,14 @@ import "./styles/fontStyle.css";
 import BaseStyles from "styles/globalStyles";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       refetchOnWindowFocus: false,
-      retry: 3,
+      retry: 0,
+      staleTime: 3.6e6,
     },
   },
 });
@@ -32,6 +34,7 @@ ReactDOM.render(
         draggable
         pauseOnHover
       />
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   </React.StrictMode>,
   document.getElementById("app")

@@ -1,3 +1,4 @@
 export const queryKeys = {
-    repos: 'repos'
+    repos: 'repos',
+    repoContrubutors: 'repoContrubutors'
 }

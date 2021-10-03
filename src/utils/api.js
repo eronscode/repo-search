@@ -10,10 +10,10 @@ const defaults = {
   error: 503,
 };
 
-const api = (method, url, variables) =>
+const api = (globalUrl, method, url, variables) =>
   new Promise((resolve, reject) => {
     axios({
-      url: `${API_URL}${url}`,
+      url: globalUrl ? `${API_URL}${url} ` : `${url}`,
       method,
       headers: defaults.headers(),
       params: method === "get" ? variables : undefined,
@@ -42,10 +42,10 @@ const handleApiError = (errorCode = null) => {
 
 /* eslint import/no-anonymous-default-export: [2, {"allowObject": true}] */
 export default {
-  get: (...args) => api("get", ...args),
-  post: (...args) => api("post", ...args),
-  put: (...args) => api("put", ...args),
-  patch: (...args) => api("patch", ...args),
-  delete: (...args) => api("delete", ...args),
+  get: (...args) => api(true, "get", ...args),
+  post: (...args) => api(true, "post", ...args),
+  put: (...args) => api(true, "put", ...args),
+  patch: (...args) => api(true, "patch", ...args),
+  delete: (...args) => api(true, "delete", ...args),
   handleApiError,
 };

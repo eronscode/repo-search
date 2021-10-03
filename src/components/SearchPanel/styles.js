@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { color, font, mixins } from "styles/styleUtils";
 
 export const SearchContainer = styled.div`
   padding: 0 50px;
@@ -22,7 +23,10 @@ export const SearchContainer = styled.div`
   .search-result {
     display: flex;
     flex-wrap: wrap;
-    margin: 50px 10px;
+    margin: 10px 10px;
+  }
+  .search-result-title{
+    margin: 50px 15px;
   }
 
   .search-item {
@@ -39,11 +43,58 @@ export const SearchContainer = styled.div`
     }
 
     .search-result {
-      margin: 50px 70px;
+      margin: 30px 70px 50px 70px;
+    }
+    .search-result-title {
+      margin: 17px 85px 0;
     }
   }
 
   @media screen and (max-width: 768px) {
     padding: 0 20px;
+  }
+`;
+
+export const ContributorsWrapper = styled.div`
+  padding: 0 20px;
+  height: 350px;
+  ${mixins.scrollableY}
+  ${mixins.customScrollbar}
+  .contributions {
+    ${font.size(12)};
+    color: ${color.darkGrey};
+  }
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0;
+    .image-wrapper {
+      display: flex;
+      align-items: center;
+      p {
+        margin-left: 10px;
+      }
+    }
+    .image {
+      height: 40px;
+      width: 40px;
+      border-radius: 50px;
+      overflow: hidden;
+      background: ${color.darkGrey};
+      color: ${color.white};
+      text-align: center;
+      vertical-align: center;
+      margin: 0 4px 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
   }
 `;

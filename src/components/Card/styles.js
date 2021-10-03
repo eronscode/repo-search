@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { color, font } from "styles/styleUtils";
+import { color, font, mixins } from "styles/styleUtils";
 
 export const CardContainer = styled.div`
   width: 100%;
@@ -31,6 +31,13 @@ export const CardContainer = styled.div`
       span {
         color: ${color.darkGrey};
       }
+    }
+  }
+
+  .footer {
+    button {
+      ${mixins.clickable}
+      color: ${color.blue}
     }
   }
 
