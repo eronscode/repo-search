@@ -61,7 +61,6 @@ function SearchPanel() {
   }, [page]);
 
   const pageLength = Math.floor(data?.total_count / ITEMS_PER_PAGE);
-  console.log(Math.floor(data?.total_count / ITEMS_PER_PAGE));
 
   return (
     <SearchContainer ref={containerRef}>
