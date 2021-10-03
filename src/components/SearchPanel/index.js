@@ -38,6 +38,7 @@ function SearchPanel() {
   }
 
   function handleSearch() {
+    setPage(1);
     setSearchQuery(value);
   }
 
@@ -73,12 +74,10 @@ function SearchPanel() {
             Showing
             {!isFetchingData && (
               <>
-                <span> {ITEMS_PER_PAGE * page} of </span>
-
-                <span> {data?.total_count} </span>
+                <span> {data?.total_count} results </span>
               </>
             )}
-             for search query - '{searchQuery}'{" "}
+            for search query - '{searchQuery}'{" "}
           </p>
         </div>
       )}
@@ -201,7 +200,7 @@ function renderPagination(page, setPage, isPreviousData, data, pageLength) {
         onClick={() => {
           setPage((old) => (pageLength !== page ? old + 1 : old));
         }}
-        disabled={isPreviousData || pageLength === page}
+        disabled={isPreviousData || pageLength === page || pageLength === 0}
       >
         Next Page
       </button>
