@@ -1,5 +1,4 @@
 import { CardContainer } from "./styles";
-import testImg from "assets/images/text-img.jpg";
 
 function Card({
   avatar_url = "",

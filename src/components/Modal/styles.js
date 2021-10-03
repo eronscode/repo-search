@@ -1,5 +1,5 @@
 import { color, font, mixins } from "styles/styleUtils";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const ScrollOverlay = styled.div`
   z-index: 1000;
@@ -47,17 +47,17 @@ export const StyledModal = styled.div`
   }
 `;
 
-const modalSizes = {
-  sm: css`
-    max-width: 550px;
-  `,
-  md: css`
-    max-width: 700px;
-  `,
-  lg: css`
-    max-width: 950px;
-  `,
-};
+// const modalSizes = {
+//   sm: css`
+//     max-width: 550px;
+//   `,
+//   md: css`
+//     max-width: 700px;
+//   `,
+//   lg: css`
+//     max-width: 950px;
+//   `,
+// };
 
 export const ModalHeader = styled.div`
   display: inline-flex;
