@@ -61,8 +61,9 @@ function SearchPanel() {
     });
   }, [page]);
 
-  const pageLength = Math.floor(data?.total_count / ITEMS_PER_PAGE);
+  const pageLength = Math.ceil(data?.total_count / ITEMS_PER_PAGE);
   const isFetchingData = status === "loading" || isFetching;
+  
 
   return (
     <SearchContainer ref={containerRef}>
