@@ -68,8 +68,11 @@ function SearchPanel() {
       {renderSearchForm(value, handleSearch, handleInputChange)}
       {!isEmpty(data?.items) && (
         <div className='search-result-title'>
-          <p>Showing results for search query '{searchQuery}' </p>
-          <p>Total: <span>{data?.total_count}</span></p>
+          <p>
+            Showing <span>{ITEMS_PER_PAGE * page} </span> of{" "}
+            <span>{data?.total_count}</span> for search query - '
+            {searchQuery}'{" "}
+          </p>
         </div>
       )}
       <div className='search-result'>
