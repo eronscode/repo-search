@@ -5,9 +5,9 @@ const propTypes = {
   avatar_url: PropTypes.string,
   username: PropTypes.string,
   full_name: PropTypes.string,
-  forks: PropTypes.string,
-  open_issues: PropTypes.string,
-  stars: PropTypes.string,
+  forks: PropTypes.number,
+  open_issues: PropTypes.number,
+  stars: PropTypes.number,
   toggleContributors: PropTypes.func,
 };
 
