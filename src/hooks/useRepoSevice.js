@@ -11,5 +11,9 @@ async function fetchRepos(page = 0, query) {
 /* eslint import/no-anonymous-default-export: [2, {"allowObject": true}] */
 export default {
   useFetchRepos: (page, query, ...args) =>
-    useQuery([queryKeys.repos, page], () => fetchRepos(page, query), ...args),
+    useQuery(
+      [queryKeys.repos, page, query],
+      () => fetchRepos(page, query),
+      ...args
+    ),
 };

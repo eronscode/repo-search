@@ -1,5 +1,6 @@
+import Skeleton from "react-loading-skeleton";
 import styled from "styled-components";
-import { mixins } from "styles/styleUtils";
+import { color, mixins } from "styles/styleUtils";
 
 export function ErrorUI({ onError = () => null }) {
   return (
@@ -9,6 +10,31 @@ export function ErrorUI({ onError = () => null }) {
     </ErrorContainer>
   );
 }
+
+export function CardLoader({ length = 3, className = "" }) {
+  return Array(length)
+    .fill()
+    .map((item, index) => (
+      <div key={index} className={className}>
+        <CardLoaderContainer>
+          <div>
+            <Skeleton circle={true} height={100} width={100} />
+            <div>
+              <Skeleton style={{margin: '10px 0'}} count={3} height={20} width={300} />
+            </div>
+          </div>
+        </CardLoaderContainer>
+      </div>
+    ));
+}
+
+const CardLoaderContainer = styled.div`
+  width: 100%;
+
+  background-color: ${color.white};
+  padding: 20px;
+  text-align: center;
+`;
 
 const ErrorContainer = styled.div`
   width: 100%;
