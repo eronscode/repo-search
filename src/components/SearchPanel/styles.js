@@ -14,7 +14,7 @@ export const SearchContainer = styled.div`
     align-items: center;
   }
   .input-container {
-    width: 70%;
+    width: 82%;
     input {
       height: 50px;
     }
@@ -25,8 +25,17 @@ export const SearchContainer = styled.div`
     flex-wrap: wrap;
     margin: 10px 10px;
   }
-  .search-result-title{
+  .search-result-title {
     margin: 50px 15px;
+    span {
+      ${font.bold}
+    }
+  }
+  .pagination-container {
+    text-align: center;
+    button {
+      ${mixins.clickable}
+    }
   }
 
   .search-item {

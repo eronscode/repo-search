@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import isEmpty from "lodash/isEmpty";
 
 import { ContributorsWrapper, SearchContainer } from "./styles";
@@ -8,18 +8,21 @@ import Card from "components/Card";
 import repoService from "hooks/useRepoSevice";
 import { CardLoader, ErrorUI, NoData } from "utils/placeholders";
 import Modal from "components/Modal";
+import { ITEMS_PER_PAGE } from "utils/constants";
 
 function SearchPanel() {
   const [value, setValue] = useState("");
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [contributorsUrl, setContributorsUrl] = useState(null);
   const [currentRepo, setCurrentRepo] = useState(null);
+  const containerRef = useRef();
 
   const { status, isError, data, isFetching, isPreviousData } =
     repoService.useFetchRepos(page, searchQuery, {
       enabled: !!searchQuery,
+      keepPreviousData: true,
     });
 
   const {
@@ -49,16 +52,25 @@ function SearchPanel() {
     setSearchQuery(null);
   }
 
-  console.log({ data, contributors, currentRepo, status, isFetching });
+  useEffect(() => {
+    containerRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
+    });
+  }, [page]);
+
+  const pageLength = Math.floor(data?.total_count / ITEMS_PER_PAGE);
+  console.log(Math.floor(data?.total_count / ITEMS_PER_PAGE));
 
   return (
-    <SearchContainer>
+    <SearchContainer ref={containerRef}>
       <h1>Find Github Repos</h1>
       {renderSearchForm(value, handleSearch, handleInputChange)}
       {!isEmpty(data?.items) && (
         <div className='search-result-title'>
-          <p>Showing results for '{searchQuery}' </p>
-          <p>Total: {data?.total_count} </p>
+          <p>Showing results for search query '{searchQuery}' </p>
+          <p>Total: <span>{data?.total_count}</span></p>
         </div>
       )}
       <div className='search-result'>
@@ -94,27 +106,13 @@ function SearchPanel() {
                     )}
                   </Modal>
                 )}
-                <div className='pagination-container'>
-                  <button
-                    onClick={() => setPage((old) => Math.max(old - 1, 0))}
-                    disabled={page === 0}
-                  >
-                    Previous Page
-                  </button>{" "}
-                  <button
-                    onClick={() => {
-                      setPage((old) => (data?.hasMore ? old + 1 : old));
-                    }}
-                    disabled={isPreviousData || !data?.hasMore}
-                  >
-                    Next Page
-                  </button>
-                </div>
               </>
             )}
           </>
         )}
       </div>
+      {!isEmpty(data?.items) &&
+        renderPagination(page, setPage, isPreviousData, data, pageLength)}
     </SearchContainer>
   );
 }
@@ -178,6 +176,27 @@ function renderContributorsResult(data = []) {
         </li>
       ))}
     </ContributorsWrapper>
+  );
+}
+
+function renderPagination(page, setPage, isPreviousData, data, pageLength) {
+  return (
+    <div className='pagination-container'>
+      <button
+        onClick={() => setPage((old) => Math.max(old - 1, 0))}
+        disabled={page === 1}
+      >
+        Previous Page
+      </button>{" "}
+      <button
+        onClick={() => {
+          setPage((old) => (pageLength !== page ? old + 1 : old));
+        }}
+        disabled={isPreviousData || pageLength === page}
+      >
+        Next Page
+      </button>
+    </div>
   );
 }
 
