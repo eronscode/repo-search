@@ -78,7 +78,7 @@ function SearchPanel() {
                 <span> {data?.total_count} </span>
               </>
             )}
-            for search query - '{searchQuery}'{" "}
+             for search query - '{searchQuery}'{" "}
           </p>
         </div>
       )}
