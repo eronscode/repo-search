@@ -61,6 +61,7 @@ function SearchPanel() {
   }, [page]);
 
   const pageLength = Math.floor(data?.total_count / ITEMS_PER_PAGE);
+  const isFetchingData = status === "loading" || isFetching;
 
   return (
     <SearchContainer ref={containerRef}>
@@ -69,14 +70,20 @@ function SearchPanel() {
       {!isEmpty(data?.items) && (
         <div className='search-result-title'>
           <p>
-            Showing <span>{ITEMS_PER_PAGE * page} </span> of{" "}
-            <span>{data?.total_count}</span> for search query - '
-            {searchQuery}'{" "}
+            Showing
+            {!isFetchingData && (
+              <>
+                <span> {ITEMS_PER_PAGE * page} of </span>
+
+                <span> {data?.total_count} </span>
+              </>
+            )}
+            for search query - '{searchQuery}'{" "}
           </p>
         </div>
       )}
       <div className='search-result'>
-        {status === "loading" || isFetching ? (
+        {isFetchingData ? (
           <CardLoader className='search-item' />
         ) : isError ? (
           <ErrorUI onError={handleSearch} />
