@@ -1,8 +1,9 @@
 import { useState } from "react";
+import isEmpty from "lodash/isEmpty";
+
+import { ContributorsWrapper, SearchContainer } from "./styles";
 import Button from "components/Button";
 import Input from "components/Input";
-import isEmpty from "lodash/isEmpty";
-import { ContributorsWrapper, SearchContainer } from "./styles";
 import Card from "components/Card";
 import repoService from "hooks/useRepoSevice";
 import { CardLoader, ErrorUI, NoData } from "utils/placeholders";
@@ -16,7 +17,7 @@ function SearchPanel() {
   const [contributorsUrl, setContributorsUrl] = useState(null);
   const [currentRepo, setCurrentRepo] = useState(null);
 
-  const { status, isError, error, data, isFetching, isPreviousData } =
+  const { status, isError, data, isFetching, isPreviousData } =
     repoService.useFetchRepos(page, searchQuery, {
       enabled: !!searchQuery,
     });
@@ -148,32 +149,30 @@ function renderSearchResult(repo = {}, toggleContributors = () => null) {
   }
 
   return (
-    <>
-      <div className='search-item'>
-        <Card
-          open_issues={repo.open_issues_count}
-          full_name={repo.full_name}
-          avatar_url={repo.owner.avatar_url}
-          username={repo.owner.login}
-          stars={repo.stargazers_count}
-          forks={repo.forks_count}
-          toggleContributors={() => handleToggleContributors(repo)}
-        />
-      </div>
-    </>
+    <div key={repo.id} className='search-item'>
+      <Card
+        open_issues={repo.open_issues_count}
+        full_name={repo.full_name}
+        avatar_url={repo.owner.avatar_url}
+        username={repo.owner.login}
+        stars={repo.stargazers_count}
+        forks={repo.forks_count}
+        toggleContributors={() => handleToggleContributors(repo)}
+      />
+    </div>
   );
 }
 
 function renderContributorsResult(data = []) {
   return (
     <ContributorsWrapper>
-      {data.map((item) => (
-        <li>
+      {data?.map((item) => (
+        <li key={item.id}>
           <div className='image-wrapper'>
             <div className='image'>
-              <img src={item?.avatar_url} alt={item?.login} />
+              <img src={item.avatar_url} alt={item.login} />
             </div>
-            <p>{item?.login}</p>
+            <p>{item.login}</p>
           </div>
           <p className='contributions'>{item.contributions} contributions</p>
         </li>

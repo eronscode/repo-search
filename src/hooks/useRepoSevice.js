@@ -2,9 +2,10 @@ import { useQuery } from "react-query";
 import { queryKeys } from "config/queryKeys";
 import api from "utils/api";
 import { ApiEndpoints } from "utils/endpoints";
+import { ITEMS_PER_PAGE } from "utils/constants";
 
 async function fetchRepos(page = 0, query) {
-  const response = await api.get(ApiEndpoints.SEARCH_REPO(query, page, 18));
+  const response = await api.get(ApiEndpoints.SEARCH_REPO(query, page, ITEMS_PER_PAGE));
   return response;
 }
 
