@@ -25,7 +25,8 @@ NOTE: Ensure you're connected to the internet so api's can load up data.
 
 2. Contributors for each repository can be viewed by clicking the 'view contributors' button on each repo card which opens up a modal and loads the contributors data for that repository'
 
-## Tips and Additions
+## Deployment Link
+https://gitrepo-fet.herokuapp.com/
 
 
 
