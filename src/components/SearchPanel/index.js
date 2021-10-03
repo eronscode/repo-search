@@ -10,35 +10,47 @@ function SearchPanel() {
   function handleInputChange(e) {
     setValue(e.target.value);
   }
-  
+
   return (
     <SearchContainer>
-      <h1>Find Repos</h1>
+      <h1>Find Github Repos</h1>
       <div className='search-form'>
-        <div>
+        <div className='input-container'>
           <Input
             placeholder='Type in keyword to search'
             onChange={handleInputChange}
             value={value}
+            type='search'
           />
         </div>
-        <div>
+        <div className='button-container'>
           <Button variant='primary' onClick={() => null}>
             Search
           </Button>
         </div>
       </div>
-      <div className='search-result'>
-          {renderCardList()}
-      </div>
+      <div className='search-result'>{renderCardList()}</div>
     </SearchContainer>
   );
 }
 
 function renderCardList(params) {
-    return(
+  return (
+    <>
+      <div className='search-item'>
         <Card />
-    )
+      </div>
+      <div className='search-item'>
+        <Card />
+      </div>
+      <div className='search-item'>
+        <Card />
+      </div>
+      <div className='search-item'>
+        <Card />
+      </div>
+    </>
+  );
 }
 
 export default SearchPanel;

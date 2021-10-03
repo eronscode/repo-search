@@ -33,7 +33,7 @@ const InputElement = styled.input`
   color: ${color.black};
   background: ${color.white};
   transition: background 0.1s;
-  ${font.size(12)};
+  ${font.size(16)};
   line-height: 14px;
 
   &:hover {
@@ -57,10 +57,6 @@ const InputElement = styled.input`
 `;
 
 const ErrorContainer = styled.div`
-  position: absolute;
-  right: -106px;
-  top: -60px;
-  width: 200px;
   text-align: center;
 `;
 
