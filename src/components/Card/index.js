@@ -1,4 +1,25 @@
 import { CardContainer } from "./styles";
+import PropTypes from "prop-types";
+
+const propTypes = {
+  avatar_url: PropTypes.string,
+  username: PropTypes.string,
+  full_name: PropTypes.string,
+  forks: PropTypes.string,
+  open_issues: PropTypes.string,
+  stars: PropTypes.string,
+  toggleContributors: PropTypes.func,
+};
+
+const defaultProps = {
+  avatar_url: undefined,
+  username: undefined,
+  full_name: undefined,
+  forks: undefined,
+  open_issues: undefined,
+  stars: undefined,
+  toggleContributors: () => null,
+};
 
 function Card({
   avatar_url = "",
@@ -37,5 +58,8 @@ function Card({
     </CardContainer>
   );
 }
+
+Card.propTypes = propTypes;
+Card.defaultProps = defaultProps;
 
 export default Card;
