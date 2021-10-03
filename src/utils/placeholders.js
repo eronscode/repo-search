@@ -27,7 +27,7 @@ export function CardLoader({ length = 3, className = "" }) {
                 style={{ margin: "10px 0" }}
                 count={3}
                 height={20}
-                width={300}
+                width={250}
               />
             </div>
           </div>
