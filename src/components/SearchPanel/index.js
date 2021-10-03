@@ -72,14 +72,13 @@ function SearchPanel() {
       {!isEmpty(data?.items) && (
         <div className='search-result-title'>
           <p>
-            Showing
-            {!isFetchingData && (
-              <>
-                <span> {data?.total_count} results </span>
-              </>
-            )}
-            for search query - '{searchQuery}'{" "}
+            Showing results for search query - '{searchQuery}'{" "}
           </p>
+          <p>{!isFetchingData && (
+              <>
+                <span>Total: {data?.total_count}  </span>
+              </>
+            )}</p>
         </div>
       )}
       <div className='search-result'>
