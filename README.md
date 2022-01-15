@@ -1,4 +1,4 @@
-## Zatec Frontend Test
+## Frontend Test
 
 An assignment to build a client-only UI that lets the user search repositories on GitHub - Task done by Osemudiamen Matthew Elebesunu.
 
